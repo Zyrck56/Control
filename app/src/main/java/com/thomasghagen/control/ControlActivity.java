@@ -15,6 +15,7 @@ public class ControlActivity extends AppCompatActivity {
         setContentView(R.layout.activity_control);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        
 
         
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
