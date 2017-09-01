@@ -43,7 +43,8 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="Message"
-            android:inputType="text" />
+            android:inputType="text"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/gobutton"
@@ -58,7 +59,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Incoming Message" />
+            android:text="Incoming Message"
+            android:visibility="invisible" />
 
     </LinearLayout>
 
