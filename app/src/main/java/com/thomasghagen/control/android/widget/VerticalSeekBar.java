@@ -57,7 +57,6 @@ public class VerticalSeekBar extends SeekBar {
 
                 break;
             case MotionEvent.ACTION_UP:
-                
                 setProgress(50);
                 Log.i("Progress",getProgress()+"");
                 break;
