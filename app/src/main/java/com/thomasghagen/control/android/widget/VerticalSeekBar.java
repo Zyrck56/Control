@@ -1,13 +1,14 @@
-package com.thomasghagen.control;
+package com.thomasghagen.control.android.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.support.v7.widget.AppCompatSeekBar;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.SeekBar;
 
-public class VerticalSeekBar extends SeekBar {
+public class VerticalSeekBar extends AppCompatSeekBar {
 
     public VerticalSeekBar(Context context) {
         super(context);
@@ -47,14 +48,19 @@ public class VerticalSeekBar extends SeekBar {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_MOVE:
-            case MotionEvent.ACTION_UP:
+
                 int i=0;
                 i=getMax() - (int) (getMax() * event.getY() / getHeight());
                 setProgress(i);
-                //Log.i("Progress",getProgress()+"");
+                Log.i("Progress",getProgress()+"");
                 onSizeChanged(getWidth(), getHeight(), 0, 0);
-                break;
 
+                break;
+            case MotionEvent.ACTION_UP:
+                
+                setProgress(50);
+                Log.i("Progress",getProgress()+"");
+                break;
             case MotionEvent.ACTION_CANCEL:
                 break;
         }

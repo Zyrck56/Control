@@ -20,22 +20,24 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <com.thomasghagen.control.VerticalSeekBar
+        <com.thomasghagen.control.android.widget.VerticalSeekBar
             android:id="@+id/leftseekbar"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:thumb="@drawable/scrubber1" />
+            android:thumb="@drawable/scrubber1"
+            android:progressTint="@color/black_overlay"/>
 
         <Space
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="3" />
 
-        <com.thomasghagen.control.VerticalSeekBar
+        <com.thomasghagen.control.android.widget.VerticalSeekBar
             android:id="@+id/rightseekbar"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:thumb="@drawable/scrubber1" />
+            android:thumb="@drawable/scrubber1"
+            android:progressTint="@color/black_overlay"/>
 
         <Space
             android:layout_width="wrap_content"
