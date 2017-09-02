@@ -9,9 +9,6 @@ import android.widget.SeekBar;
 
 import com.thomasghagen.control.android.widget.VerticalSeekBar;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 public class ControlActivity extends AppCompatActivity {
     String S_ipaddress;
     String S_port;
@@ -19,8 +16,6 @@ public class ControlActivity extends AppCompatActivity {
     Utils socket;
     VerticalSeekBar leftseekbar;
     VerticalSeekBar rightseekbar;
-    String outgoingMessage;
-    Timer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +29,6 @@ public class ControlActivity extends AppCompatActivity {
         S_ipaddress = socketinfo.getString("ipaddress", "192.168.0.0");
         S_port = socketinfo.getString("port", "0");
         I_port = Integer.parseInt(S_port);
-        outgoingMessage = "omgtest";
 
         leftseekbar = (VerticalSeekBar)findViewById(R.id.leftseekbar);
         rightseekbar = (VerticalSeekBar)findViewById(R.id.rightseekbar);
@@ -45,8 +39,7 @@ public class ControlActivity extends AppCompatActivity {
         leftseekbar.setOnSeekBarChangeListener(leftlistener);
         rightseekbar.setOnSeekBarChangeListener(rightlistener);
 
-        //socket = new Utils(S_ipaddress, I_port, "");
-
+        socket = new Utils();
         
 
     }
@@ -54,10 +47,8 @@ public class ControlActivity extends AppCompatActivity {
     SeekBar.OnSeekBarChangeListener leftlistener = new SeekBar.OnSeekBarChangeListener() {
         @Override
         public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-            outgoingMessage = "Left: " + Integer.toString(i);
-
-            timer = new Timer();
-            timer.schedule(new Utils(S_ipaddress, I_port, outgoingMessage), 1000, 1000);
+            final String outgoingMessage = "Left: " + Integer.toString(i);
+            socket.sendData(S_ipaddress, I_port, outgoingMessage);
         }
 
         @Override
@@ -75,7 +66,7 @@ public class ControlActivity extends AppCompatActivity {
         @Override
         public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
             final String outgoingMessage = "Right: " + Integer.toString(i);
-            //socket.sendData(S_ipaddress, I_port, outgoingMessage);
+            socket.sendData(S_ipaddress, I_port, outgoingMessage);
         }
 
         @Override
@@ -89,5 +80,4 @@ public class ControlActivity extends AppCompatActivity {
             Log.i("test", Integer.toString(seekBar.getProgress()));
         }
     };
-
 }
