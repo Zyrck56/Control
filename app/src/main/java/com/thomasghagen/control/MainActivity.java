@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     public EditText ipaddress;
     public EditText port;
     public EditText message;
+    Utils socket = new Utils();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,26 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString("port", S_port);
                 editor.commit();
 
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Socket client = new Socket(S_ipaddress, I_port);
-                            DataOutputStream dataOutputStream = new DataOutputStream(client.getOutputStream());
-                            dataOutputStream.writeUTF(S_message);
-
-                            DataInputStream dataInputStream = new DataInputStream(client.getInputStream());
-                            S_incomingMessage = dataInputStream.readUTF();
-                            Log.i("incomingTAG", S_incomingMessage);
-
-                            client.close();
-                        } catch (UnknownHostException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }).start();
+                socket.sendData(S_ipaddress, I_port, S_message);
 
                 TextView textView = (TextView) findViewById(R.id.incomingmessage);
                 textView.setText("Response:\n" + S_incomingMessage);
