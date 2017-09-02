@@ -26,7 +26,8 @@
             android:name=".ControlActivity"
             android:label="@string/title_activity_control"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="landscape">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.thomasghagen.control.MainActivity" />

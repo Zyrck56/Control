@@ -7,6 +7,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.TimerTask;
 
 /**
  * Created by Thomas on 9/1/2017.
@@ -14,6 +15,7 @@ import java.net.UnknownHostException;
 
 public class Utils {
     String S_incomingMessage;
+
     public String sendData(final String ipaddress, final int port, final String outgoingMessage) {
 
         new Thread(new Runnable() {
@@ -28,13 +30,17 @@ public class Utils {
                     S_incomingMessage = dataInputStream.readUTF();
 
                     client.close();
+
                 } catch (UnknownHostException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
+
         }).start();
         return S_incomingMessage;
     }
+
+
 }
