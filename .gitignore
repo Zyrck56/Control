@@ -6,5 +6,5 @@
 /build
 /captures
 .externalNativeBuild
-
+[alias] diff = diff --ignore-space-change
 
